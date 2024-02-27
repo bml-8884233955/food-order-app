@@ -1,11 +1,24 @@
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
-import { PAGES } from "../data";
+import ReturantItemList from "../components/ReturantItemList/ReturantItemList";
+import { RESTURANTS } from "../assets/swiggy";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Home() {
+    const resturants = RESTURANTS.data.restaurants;
+    const navigate = useNavigate();
+
+    function navigateToDetails(id) {
+        console.log(id);
+        navigate(`/resturants/${id}`);
+    }
+
     return (
         <div>
-            <p> Home Page</p>
-        </div>
+            {
+                resturants.map((item) =>
+                    <ReturantItemList key={item.info.id} info={item.info} onClick={() => navigateToDetails(item.info.id)} />
+                )
+            }
+        </div >
     );
 }

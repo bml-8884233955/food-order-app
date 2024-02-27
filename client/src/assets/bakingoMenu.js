@@ -1,4 +1,4 @@
-{
+export const DISH_ITEM = {
     "data": {
         "itemCards": [
             {

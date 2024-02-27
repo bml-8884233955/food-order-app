@@ -3,14 +3,22 @@ import { NAV_BAR } from "../../data"
 import './Header.css';
 import TabButton from "../TabButton/TabButton";
 import headerIcon from "../../assets/95091.png"
+// import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [selectedTab, setSelectedTab] = useState();
+    // const navigate = useNavigate();
 
     function handleSelect(tab) {
         setSelectedTab(tab);
         console.log(tab);
     }
+
+    // function navigateHandler() {
+    //     navigate('/cart');
+    // }
+
+
 
     return (
         <div>
