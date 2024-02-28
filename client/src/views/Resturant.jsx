@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import DishItemList from "../components/DishItemList/DishItemList";
+import DishItem from "../components/DishItem/DishItem";
 // import { DISH_ITEM } from "../assets/bakingoMenu";
 import { useEffect, useState } from "react";
 import { fetchResturantMenu } from "../http";
@@ -24,7 +24,7 @@ export default function Resturant() {
             </p>
             {
                 menu.map((itemData) => (
-                    <DishItemList key={itemData.id} {...itemData}></DishItemList>
+                    <DishItem key={itemData.id} {...itemData}></DishItem>
                 ))
             }
         </>

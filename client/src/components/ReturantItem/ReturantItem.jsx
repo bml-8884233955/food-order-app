@@ -1,5 +1,5 @@
-import './ReturantItemList.css';
-export default function ReturantItemList({ info, onClick }) {
+import './ReturantItem.css';
+export default function ReturantItem({ info, onClick }) {
     return (
         <>
             <div className="resturant-list-container" onClick={onClick}>

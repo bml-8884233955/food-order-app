@@ -1,4 +1,4 @@
-import ReturantItemList from "../components/ReturantItemList/ReturantItemList";
+import ReturantItem from "../components/ReturantItem/ReturantItem";
 // import { RESTURANTS } from "../assets/swiggy";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -27,7 +27,7 @@ export default function Home() {
         <div>
             {
                 resturants.map((item) =>
-                    <ReturantItemList key={item.info.id} info={item.info} onClick={() => navigateToDetails(item.info.id)} />
+                    <ReturantItem key={item.info.id} info={item.info} onClick={() => navigateToDetails(item.info.id)} />
                 )
             }
         </div >

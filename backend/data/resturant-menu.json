@@ -11,7 +11,7 @@
                 "imageId": "58a06f01bc972de404a7b50588f6bd6d",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 10900,
+                "price": 109,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -28,7 +28,7 @@
                 "imageId": "v5je8qzy4w8s0conzzxo",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 8900,
+                "price": 89,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -49,7 +49,7 @@
                 "imageId": "ebrjhlgnsshuinjxbuof",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 8900,
+                "price": 89,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -70,7 +70,7 @@
                 "imageId": "laozbxohmfnvce2l4f6z",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 10900,
+                "price": 109,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -91,7 +91,7 @@
                 "imageId": "eba8fb9aa7a92797a97af17520bcd749",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 12900,
+                "price": 129,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -112,7 +112,7 @@
                 "imageId": "rxbbzo6bj4tkbzbkypmr",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 12900,
+                "price": 129.50,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -133,7 +133,7 @@
                 "imageId": "b92a91d0db96679e466319687383d5d3",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 59900,
+                "price": 599.10,
                 "itemAttribute": {
                     "vegClassifier": "VEG",
                     "portionSize": "Serves 1"
@@ -154,6 +154,7 @@
                 "imageId": "xnznp2fkndvgpndt2dyl",
                 "inStock": 1,
                 "isVeg": 1,
+                "price": 479,
                 "ratings": {
                     "aggregatedRating": {
                         "rating": "4.4",
@@ -170,7 +171,7 @@
                 "imageId": "b93222c67463070fc45ced51a432faac",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 47900,
+                "price": 479,
                 "ratings": {
                     "aggregatedRating": {
                         "rating": "4.6",
@@ -187,7 +188,7 @@
                 "imageId": "f532ecd6ffae5ca5b75cf0f18c1123ac",
                 "inStock": 1,
                 "isVeg": 1,
-                "price": 14900,
+                "price": 149,
                 "showImage": true,
                 "ratings": {
                     "aggregatedRating": {
@@ -205,6 +206,7 @@
                 "imageId": "1f27dba287121fbb4df192b7c67ede64",
                 "inStock": 1,
                 "isVeg": 1,
+                "price": 69,
                 "ratings": {
                     "aggregatedRating": {
                         "rating": "4.1",
@@ -221,7 +223,7 @@
                 "imageId": "fu3slis50dgunqh2vr2m",
                 "inStock": 1,
                 "isVeg": 1,
-                "defaultPrice": 6900,
+                "price": 69,
                 "ratings": {
                     "aggregatedRating": {
                         "rating": "4.2",

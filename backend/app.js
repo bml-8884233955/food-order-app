@@ -18,14 +18,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// 404
-app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
-    return next();
-  }
-  res.status(404).json({ message: '404 - Not Found' });
-});
-
 app.get('/resturants', async (req, res) => {
   const fileContent = await fs.readFile('./data/resturants.json');
 
@@ -94,6 +86,14 @@ app.post('/orders', async (req, res) => {
   allOrders.push(newOrder);
   await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
   res.status(201).json({ message: 'Order created!' });
+});
+
+// 404
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+  res.status(404).json({ message: '404 - Not Found' });
 });
 
 app.listen(3000);
