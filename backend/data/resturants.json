@@ -1,4 +1,4 @@
-export const RESTURANTS = {
+{
     "statusCode": 0,
     "data": {
         "restaurants": [
@@ -23,7 +23,7 @@ export const RESTURANTS = {
                     },
                     "isOpen": true,
                     "type": "F",
-                    "reviewsSummary": {},
+                    "reviewsSummary": {}
                 }
             },
             {
@@ -80,7 +80,7 @@ export const RESTURANTS = {
                         "opened": true
                     },
                     "isOpen": true,
-                    "type": "F",
+                    "type": "F"
                 }
             },
             {
@@ -111,7 +111,7 @@ export const RESTURANTS = {
                     "type": "F",
 
                     "reviewsSummary": {}
-                },
+                }
             },
             {
                 "info": {
@@ -146,7 +146,7 @@ export const RESTURANTS = {
                     "isOpen": true,
                     "type": "F",
 
-                    "reviewsSummary": {},
+                    "reviewsSummary": {}
 
                 }
             },
@@ -234,8 +234,7 @@ export const RESTURANTS = {
                     },
                     "isOpen": true,
                     "type": "F"
-
-                },
+                }
             },
             {
                 "info": {

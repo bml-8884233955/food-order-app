@@ -3,22 +3,14 @@ import { NAV_BAR } from "../../data"
 import './Header.css';
 import TabButton from "../TabButton/TabButton";
 import headerIcon from "../../assets/95091.png"
-// import { useNavigate } from "react-router-dom";
 
 function Header() {
     const [selectedTab, setSelectedTab] = useState();
-    // const navigate = useNavigate();
 
     function handleSelect(tab) {
         setSelectedTab(tab);
         console.log(tab);
     }
-
-    // function navigateHandler() {
-    //     navigate('/cart');
-    // }
-
-
 
     return (
         <div>
@@ -38,9 +30,10 @@ function Header() {
                     <div className="signIn">
                         <button type="button" className="btn">Sign In</button>
                     </div>
-                    <button type="button" className="btn">
-                        Cart <span className="badge text-bg-secondary">4</span>
-                    </button>
+
+                    <div>
+                        <a className="li-link nav-link" aria-current="page" href={`/cart`}>Cart</a>
+                    </div>
                 </div>
             </nav>
         </div>

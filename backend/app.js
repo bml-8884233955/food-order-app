@@ -18,36 +18,82 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/places', async (req, res) => {
-  const fileContent = await fs.readFile('./data/places.json');
-
-  const placesData = JSON.parse(fileContent);
-
-  res.status(200).json({ places: placesData });
-});
-
-app.get('/user-places', async (req, res) => {
-  const fileContent = await fs.readFile('./data/user-places.json');
-
-  const places = JSON.parse(fileContent);
-
-  res.status(200).json({ places });
-});
-
-app.put('/user-places', async (req, res) => {
-  const places = req.body.places;
-
-  await fs.writeFile('./data/user-places.json', JSON.stringify(places));
-
-  res.status(200).json({ message: 'User places updated!' });
-});
-
 // 404
 app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     return next();
   }
   res.status(404).json({ message: '404 - Not Found' });
+});
+
+app.get('/resturants', async (req, res) => {
+  const fileContent = await fs.readFile('./data/resturants.json');
+
+  const resturantData = JSON.parse(fileContent);
+
+  res.status(200).json({ resturants: resturantData });
+});
+
+app.get('/resturant-menu', async (req, res) => {
+  const fileContent = await fs.readFile('./data/resturant-menu.json');
+
+  const menuData = JSON.parse(fileContent);
+
+  res.status(200).json({ menu: menuData });
+});
+
+app.get('/cart-item', async (req, res) => {
+  const fileContent = await fs.readFile('./data/cart-item.json');
+
+  const cartItem = JSON.parse(fileContent);
+
+  res.status(200).json({ data: cartItem });
+});
+
+app.put('/cart-item', async (req, res) => {
+  const data = req.body.data;
+
+  await fs.writeFile('./data/cart-item.json', JSON.stringify(data));
+
+  res.status(200).json({ message: 'User places updated!' });
+});
+
+app.post('/orders', async (req, res) => {
+  const orderData = req.body.order;
+
+  if (orderData === null || orderData.items === null) {
+    return res
+      .status(400)
+      .json({ message: 'Missing data.' });
+  }
+
+  if (
+    orderData.customer.email === null ||
+    !orderData.customer.email.includes('@') ||
+    orderData.customer.name === null ||
+    orderData.customer.name.trim() === '' ||
+    orderData.customer.street === null ||
+    orderData.customer.street.trim() === '' ||
+    orderData.customer['postal-code'] === null ||
+    orderData.customer['postal-code'].trim() === '' ||
+    orderData.customer.city === null ||
+    orderData.customer.city.trim() === ''
+  ) {
+    return res.status(400).json({
+      message:
+        'Missing data: Email, name, street, postal code or city is missing.',
+    });
+  }
+
+  const newOrder = {
+    ...orderData,
+    id: (Math.random() * 1000).toString(),
+  };
+  const orders = await fs.readFile('./data/orders.json', 'utf8');
+  const allOrders = JSON.parse(orders);
+  allOrders.push(newOrder);
+  await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
+  res.status(201).json({ message: 'Order created!' });
 });
 
 app.listen(3000);
