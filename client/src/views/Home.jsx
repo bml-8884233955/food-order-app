@@ -1,12 +1,10 @@
 import ReturantItem from "../components/ReturantItem/ReturantItem";
-// import { RESTURANTS } from "../assets/swiggy";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchResturants } from "../http";
 
 
 export default function Home() {
-    // const resturants = RESTURANTS.data.restaurants;
     const navigate = useNavigate();
     const [resturants, setResturants] = useState([]);
 
