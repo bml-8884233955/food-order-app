@@ -24,7 +24,7 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className="resturant-item-container">
             {
                 resturants.map((item) =>
                     <ReturantItem key={item.info.id} info={item.info} onClick={() => navigateToDetails(item.info.id)} />

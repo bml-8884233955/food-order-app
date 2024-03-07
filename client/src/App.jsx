@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import Cart from "./views/Cart";
 import ErrorPage from "./views/Error";
 import Resturant from "./views/Resturant";
+import Signin from "./views/Signin";
 
 const router = createBrowserRouter([
     {
@@ -12,9 +13,11 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
+            { path: '/', element: <Home /> },
             { path: 'home', element: <Home /> },
             { path: 'resturants/:resturantId', element: <Resturant /> },
-            { path: 'cart', element: <Cart /> }
+            { path: 'cart', element: <Cart /> },
+            { path: 'signin', element: <Signin /> }
         ]
 
     }

@@ -17,10 +17,10 @@ export default function Cart() {
             <p>  Cart</p>
             {
                 cartItems.map((items) => (
-                    <>
+                    <div key={items.id}>
                         <p> {items.id}</p>
                         <p>{items.name} </p>
-                    </>
+                    </div>
                 ))
             }
         </>
