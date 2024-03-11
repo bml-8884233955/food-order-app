@@ -11,7 +11,7 @@ export default function Home() {
     useEffect(() => {
         async function fetchResturantList() {
             const resturants = await fetchResturants();
-            setResturants(resturants.data.restaurants);
+            setResturants(resturants.data.items);
         }
         fetchResturantList();
     }, []);
