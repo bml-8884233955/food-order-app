@@ -1,0 +1,16 @@
+.header-container {
+  display: block;
+  background-color: lightblue;
+
+  .header-tabs {
+    float: right;
+    .li-item {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px;
+    }
+  }
+  .signIn {
+    float: right;
+  }
+}

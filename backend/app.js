@@ -43,11 +43,15 @@ app.get('/cart-item', async (req, res) => {
 });
 
 app.put('/cart-item', async (req, res) => {
-  const data = req.body.data;
+  const newCartItem = req.body.data;
 
-  await fs.writeFile('./data/cart-item.json', JSON.stringify(data));
+  const data = await fs.readFile('./data/cart-item.json', 'utf8');
+  const cartData = JSON.parse(data);
+  cartData.cartItems.push(newCartItem);
 
-  res.status(200).json({ message: 'User places updated!' });
+  await fs.writeFile('./data/cart-item.json', JSON.stringify(cartData));
+
+  res.status(200).json({ data: cartData, message: 'Cart Item updated!' });
 });
 
 app.post('/orders', async (req, res) => {
