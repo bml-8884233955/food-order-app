@@ -1,0 +1,19 @@
+/* src/App.scss */
+$primary-color: #007bff;
+$font-size-large: 18px;
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  // color: $primary-color;
+}
+
+.resturant-title{
+  padding: 10px;
+  text-align: center;
+  border-bottom: 3px solid lightgreen;
+}
+
+.resturant-id, .resturant-Name{
+padding: 0 10px;
+}
