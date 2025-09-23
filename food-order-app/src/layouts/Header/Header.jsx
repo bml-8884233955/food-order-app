@@ -8,7 +8,6 @@ function Header() {
 
     return (
         <div>
-
             <nav className="navbar header-container">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">
