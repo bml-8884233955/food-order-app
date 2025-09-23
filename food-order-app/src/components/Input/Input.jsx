@@ -1,12 +1,4 @@
-function InputBox() {
-    return (
-        <input type="text"></input>
-    )
+const InputBox = () => { <input type="text"></input> }
+const fName = () => { return <InputBox /> }
 
-}
-export default function fName() {
-    return (
-        <InputBox />
-    )
-
-}
+export default fName;

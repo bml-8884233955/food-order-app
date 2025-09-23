@@ -1,4 +1,4 @@
-import { ResturantItem, Sort } from "../components";
+import { ResturantItem, SortButton } from "../components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchResturants } from "../http";
@@ -24,7 +24,10 @@ export default function Home() {
     return (
         <div className="resturant-item-container">
             <div className="filter-row">
-                <Sort></Sort>
+                <SortButton
+                    sortKey={sortKey}
+                    onSortChange={handleSortChange}
+                ></SortButton>
             </div>
             {
                 resturants.map((item) =>
