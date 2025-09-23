@@ -7,7 +7,6 @@ export default function Form() {
 
     return (
         <>
-            Demo Commit
             <form>
                 <h2>Login</h2>
                 <div className="row">

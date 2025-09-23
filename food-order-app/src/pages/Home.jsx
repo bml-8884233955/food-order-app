@@ -1,4 +1,4 @@
-import { ResturantItem } from "../components";
+import { ResturantItem, Sort } from "../components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchResturants } from "../http";
@@ -23,7 +23,9 @@ export default function Home() {
 
     return (
         <div className="resturant-item-container">
-            Home Page
+            <div className="filter-row">
+                <Sort></Sort>
+            </div>
             {
                 resturants.map((item) =>
                     <ResturantItem key={item.info.id} info={item.info} onClick={() => navigateToDetails(item.info.id)} />
