@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Sort.module.scss';
 
-const SortButton = (sortKey) => {
+const SortButton = ({ setSortOrder, sortOrder }) => {
 
     const [open, setOpen] = useState(false);
     let prev = false;
@@ -27,6 +27,10 @@ const SortButton = (sortKey) => {
         }
     }, [open]);
 
+    const handleSort = (value) => {
+        setSortOrder(value);
+        setOpen(false);
+    };
 
     return (
         <div ref={dropdownRef} className={`dropxdown ${styles['sort-btn']}`}>
@@ -36,8 +40,8 @@ const SortButton = (sortKey) => {
             </button>
             {open &&
                 (<div className={`dropdown-menu ${open ? ' show' : ''}`} aria-labelledby="sortBtnMenu">
-                    <a className="dropdown-item" href="#">Raiting</a>
-                    <a className="dropdown-item" href="#">Relevance</a>
+                    <a className={`dropdown-item ${sortOrder === "raiting" ? "active" : ""}`} href="#" onClick={() => handleSort('raiting')}>Raiting</a>
+                    <a className={`dropdown-item ${sortOrder === "relevance" ? "active" : ""}`} href="#" onClick={() => handleSort('relevance')}>Relevance</a>
                     {/* <a className="dropdown-item" href="#">Cost| Low to High</a>
                 <a className="dropdown-item" href="#">Cost| High to Low</a> */}
                 </div>
