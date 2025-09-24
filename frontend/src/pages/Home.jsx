@@ -6,31 +6,48 @@ import { fetchResturants } from "../http";
 
 export default function Home() {
     const navigate = useNavigate();
-    const [resturants, setResturants] = useState([]);
+    const [resturantData, setResturantData] = useState([]);
+    const [displayedResturants, setDisplayedResturants] = useState([]);
+    const [sortOrder, setSortOrder] = useState([]);
+    let resturantsArr;
 
     useEffect(() => {
         async function fetchResturantList() {
-            const resturants = await fetchResturants();
-            setResturants(resturants.data.items);
+            resturantsArr = await fetchResturants();
+            setResturantData(resturantsArr.data.items);
+            setDisplayedResturants(resturantsArr.data.items);
         }
         fetchResturantList();
     }, []);
 
-    function navigateToDetails(id) {
+    const navigateToDetails = (id) => {
         console.log(id);
         navigate(`/resturants/${id}`);
     }
+
+    useEffect(() => {
+        let updated = [...resturantData];
+
+        if (sortOrder === 'raiting') {
+            updated.sort((a, b) => b.info.avgRating - a.info.avgRating);
+        } else if (sortOrder === 'relevance') {
+            updated = [...resturantData];
+        }
+        setDisplayedResturants(updated);
+    }, [resturantData, sortOrder])
+
+
 
     return (
         <div className="resturant-item-container">
             <div className="filter-row">
                 <SortButton
-                    sortKey={sortKey}
-                    onSortChange={handleSortChange}
+                    setSortOrder={setSortOrder}
+                    sortOrder={sortOrder}
                 ></SortButton>
             </div>
             {
-                resturants.map((item) =>
+                displayedResturants.map((item) =>
                     <ResturantItem key={item.info.id} info={item.info} onClick={() => navigateToDetails(item.info.id)} />
                 )
             }
