@@ -8,6 +8,7 @@ import Cart from "./pages/Cart";
 import ErrorPage from "./pages/Error";
 import Resturant from "./pages/Resturant";
 import Signin from "./pages/Signin";
+import CreateAccount from "./pages/CreateAccount";
 
 const router = createBrowserRouter([
     {
@@ -19,13 +20,14 @@ const router = createBrowserRouter([
             { path: 'home', element: <Home /> },
             { path: 'resturants/:resturantId', element: <Resturant /> },
             { path: 'cart', element: <Cart /> },
-            { path: 'signin', element: <Signin /> }
+            { path: 'signin', element: <Signin /> },
+            { path: 'createanaccount', element: <CreateAccount /> }
         ]
 
     }
 ])
 
-export default function App() {
+const App = () => {
     return (
         <div className="App">
             <Header />
@@ -34,3 +36,4 @@ export default function App() {
         </ div>
     );
 }
+export default App;
