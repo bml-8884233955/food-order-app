@@ -2,18 +2,23 @@ import styles from './dishItem.module.scss';
 import { updateCart } from '../../http';
 import { currencyFormatter } from '../../util/formatting';
 import Button from '../Button';
+import { CartContext } from '../../context/cartContext';
 
 
 const DishItemList = ({ name, category, description, price, id }) => {
+    const { addToCart } = useContext(CartContext);
+    const food = { name, category, description, price, id };
 
-    const handleClick = async (obj) => {
-        try {
-            await updateCart([obj]);
-        } catch (error) {
-            console.log(error);
-        }
-        console.log('Btn Clicked');
-    }
+
+
+    // const handleClick = async (obj) => {
+    //     try {
+    //         await updateCart([obj]);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     console.log('Btn Clicked');
+    // }
 
     return (
         <>
@@ -25,7 +30,7 @@ const DishItemList = ({ name, category, description, price, id }) => {
                     <p>{currencyFormatter.format(price)}</p>
                 </div>
                 <div className={styles.btnContainer}>
-                    <Button label="add" onClick={() => handleClick({ id, name, description })} />
+                    <Button label="add" onClick={() => addToCart(food)} />
                 </div>
             </div>
         </>
