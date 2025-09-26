@@ -1,10 +1,19 @@
-import { useRef } from "react";
-import Form from "../layouts/Form/Form";
+import { Link } from "react-router-dom";
+import LoginForm from "../components/LoginForm/LoginForm";
 
-export default function Signin() {
+const Signin = () => {
     return (
         <>
-            <Form />
+            <h2>Login</h2>
+
+            <span>or</span>
+            <Link to="/createanaccount" className="link-success">
+                Create an account
+            </Link>
+
+            <LoginForm />
         </>
     )
 }
+
+export default Signin;
