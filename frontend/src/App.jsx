@@ -9,6 +9,7 @@ import ErrorPage from "./pages/Error";
 import Resturant from "./pages/Resturant";
 import Signin from "./pages/Signin";
 import CreateAccount from "./pages/CreateAccount";
+import CartContextProvider from "./context/shopping-cart-context";
 
 const router = createBrowserRouter([
     {
@@ -30,9 +31,11 @@ const router = createBrowserRouter([
 const App = () => {
     return (
         <div className="App">
-            <Header />
-            <RouterProvider router={router} />
-            <Footer></Footer>
+            <CartContextProvider>
+                <Header />
+                <RouterProvider router={router} />
+                <Footer></Footer>
+            </CartContextProvider>
         </ div>
     );
 }

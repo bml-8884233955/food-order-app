@@ -1,27 +1,39 @@
-import { fetchCartItem } from "../http";
-import { useState, useEffect } from "react";
-import { useFetch } from "../hooks/useFetch";
+// import { fetchCartItem } from "../http";
+import { useState, useEffect, useContext } from "react";
+// import { useFetch } from "../hooks/useFetch";
+import { CartContext } from "../context/shopping-cart-context";
 
-export default function Cart() {
+const Cart = () => {
+    const cartCtx = useContext(CartContext);
+    console.log('cart items' + cartCtx.items);
 
-    const {
-        isFetching,
-        fetchedData: cartItems,
-        setFetchedData: setCartItems,
-        error } = useFetch(fetchCartItem, []);
+    const totalPrice = cartCtx.items.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+    );
+
+    const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
 
     return (
-        <>
-            <p>  Cart</p>
-            {
-                cartItems.map((items) => (
-                    <div key={items.id}>
-                        <p> {items.id}</p>
-                        <p>{items.name} </p>
-                    </div>
-                ))
-            }
-        </>
+        < div id="cart">
+            <p>Your Cart</p>
+            {cartCtx.items.length === 0 && <p> No items in cart</p>}
+            {cartCtx.items.length > 0 && (
+                <div>{
+                    cartCtx.items.map((items) => (
+
+                        <div key={items.id} >
+                            <p> {items.id}</p>
+                            <p>{items.name} </p>
+                        </div>
+                    ))
+                }
+                </div>
+            )}
+            <p> Total Price:  {formattedTotalPrice}</p>
+
+        </div>
     );
-}
+};
+export default Cart;

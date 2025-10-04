@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/resturants', async (req, res) => {
+app.get('/api/resturants', async (req, res) => {
   const fileContent = await fs.readFile('./data/resturants.json');
 
   const resturantData = JSON.parse(fileContent);
@@ -26,7 +26,7 @@ app.get('/resturants', async (req, res) => {
   res.status(200).json({ resturants: resturantData });
 });
 
-app.get('/resturant-menu', async (req, res) => {
+app.get('/api/resturant-menu', async (req, res) => {
   const fileContent = await fs.readFile('./data/resturant-menu.json');
 
   const menuData = JSON.parse(fileContent);
@@ -34,27 +34,45 @@ app.get('/resturant-menu', async (req, res) => {
   res.status(200).json({ menu: menuData });
 });
 
-app.get('/cart-item', async (req, res) => {
-  const fileContent = await fs.readFile('./data/cart-item.json');
+app.post('/api/cart', async (req, res) => {
+  const cartData = req.body;
 
-  const cartItem = JSON.parse(fileContent);
-
-  res.status(200).json({ data: cartItem });
+  const fileContent = await fs.readFile('./data/cart.json');
+  fileContent.push(cartData)
+  await fs.writeFile('./data/cart.json', JSON.stringify(cartData));
+  res.status(200).json({ message: "Cart added successfully", data: cartData });
 });
 
-app.put('/cart-item', async (req, res) => {
+app.put('/api/cart/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const updateCart = req.body;
+
+  const fileContent = await fs.readFile('./data/cart.json');
+
+  const index = fileContent.findIndex(c => c.userId === userId);
+  if (index === -1) {
+    return res.status(404).json({ message: "Cart not found for this user" });
+  }
+
+  fileContent[index] = { ...fileContent[index], ...updateCart };
+  const cartItem = JSON.parse(fileContent);
+  await fs.writeFile('./data/cart.json', JSON.stringify(cartData));
+  res.status(200).json({ message: "Cart updated successfully", data: cartItem });
+});
+
+app.get('/api/cart', async (req, res) => {
   const newCartItem = req.body.data;
 
-  const data = await fs.readFile('./data/cart-item.json', 'utf8');
+  const data = await fs.readFile('./data/cart.json', 'utf8');
   const cartData = JSON.parse(data);
   cartData.cartItems.push(newCartItem);
 
   await fs.writeFile('./data/cart-item.json', JSON.stringify(cartData));
 
-  res.status(200).json({ data: cartData, message: 'Cart Item updated!' });
+  res.status(200).json({ data: cartData, message: 'Cart Added Successfully!' });
 });
 
-app.post('/orders', async (req, res) => {
+app.post('/api/orders', async (req, res) => {
   const orderData = req.body.order;
 
   if (orderData === null || orderData.items === null) {
