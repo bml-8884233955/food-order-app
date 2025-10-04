@@ -2,19 +2,25 @@ import { useParams } from "react-router-dom";
 import DishItem from "../components/DishItem";
 // import { DISH_ITEM } from "../assets/bakingoMenu";
 import { useEffect, useState } from "react";
-import { fetchResturantMenu } from "../http";
+import { useApi } from "../api";
+
 
 export default function Resturant() {
     const params = useParams();
+    const { getResturantMenu } = useApi();
     // const dishItems = DISH_ITEM.data.itemCards;
     const [menu, setMenu] = useState([]);
     const [resturantName, setResturantName] = useState();
 
     useEffect(() => {
         async function fetchMenuItems() {
-            const menu = await fetchResturantMenu();
-            setMenu(menu.data.itemCards);
-            setResturantName(menu.name);
+            try {
+                const restObj = await getResturantMenu();
+                setMenu(restObj.menu.data.itemCards);
+                setResturantName(menu.name);
+            } catch (err) {
+                console.log("Error fetching carts:", err);
+            }
         }
         fetchMenuItems();
     }, []);
@@ -27,7 +33,7 @@ export default function Resturant() {
             </p >
             {
                 menu.map((itemData) => (
-                    <DishItem key={itemData.id} {...itemData}></DishItem>
+                    <DishItem key={itemData.id} dishObj={itemData}></DishItem>
                 ))
             }
         </>

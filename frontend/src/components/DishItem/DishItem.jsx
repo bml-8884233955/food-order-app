@@ -1,36 +1,23 @@
 import styles from './dishItem.module.scss';
-import { updateCart } from '../../http';
 import { currencyFormatter } from '../../util/formatting';
 import Button from '../Button';
-import { CartContext } from '../../context/cartContext';
+// import { CartContext } from "../context/shopping-cart-context";
 
-
-const DishItemList = ({ name, category, description, price, id }) => {
-    const { addToCart } = useContext(CartContext);
-    const food = { name, category, description, price, id };
-
-
-
-    // const handleClick = async (obj) => {
-    //     try {
-    //         await updateCart([obj]);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //     console.log('Btn Clicked');
-    // }
-
+const DishItemList = ({ dishObj }) => {
+    // const { handleAddItemToCart } = CartContext();
+    const { id, name, category, price } = dishObj;
+    // const itemObj = { id, name, category, price };
     return (
         <>
             <div className={styles.dishItem}>
                 <div className={styles.itemDetails}>
-                    <p>{name}</p>
-                    <p>{category}</p>
-                    <p>{description}</p>
-                    <p>{currencyFormatter.format(price)}</p>
+                    <p>{dishObj.name}</p>
+                    <p>{dishObj.category}</p>
+                    <p>{dishObj.description}</p>
+                    <p>{currencyFormatter.format(dishObj.price)}</p>
                 </div>
                 <div className={styles.btnContainer}>
-                    <Button label="add" onClick={() => addToCart(food)} />
+                    {/* <Button label="add" onClick={() => handleAddItemToCart(itemObj)} /> */}
                 </div>
             </div>
         </>

@@ -1,16 +1,17 @@
 import { ResturantItem, SortButton } from "../components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchResturants } from "../http";
+import { useApi } from "../api";
 
 export default function Home() {
   const navigate = useNavigate();
+  const { getResturant } = useApi();
   const [resturants, setResturants] = useState([]);
 
   useEffect(() => {
     async function fetchResturantList() {
-      const resturants = await fetchResturants();
-      setResturants(resturants.data.items);
+      const restData = await getResturant();
+      setResturants(restData.resturants.data.items);
     }
     fetchResturantList();
   }, []);

@@ -3,17 +3,30 @@ import { useNavigate } from "react-router-dom";
 import './LoginForm.css';
 
 const LoginForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser((prevUser) => ({
+            ...prevUser,
+            [name]: value,
+        }))
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (ValidateState()) {
             // alert(`Login Siccessful for ${email}`);
-            setEmail('');
-            setPassword('');
+            setUser({
+                email: "",
+                password: ""
+            });
             navigate('/home');
         }
     }
@@ -21,15 +34,15 @@ const LoginForm = () => {
     const ValidateState = () => {
         let tempErrors = {};
 
-        if (!email) {
+        if (!user.email) {
             tempErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!/\S+@\S+\.\S+/.test(user.email)) {
             tempErrors.email = "Invalid email format";
         }
 
-        if (!password) {
+        if (!user.password) {
             tempErrors.password = "Password is required";
-        } else if (password.length < 6) {
+        } else if (user.password.length < 6) {
             tempErrors.password = "Password must be at least 6 characters";
         }
         setErrors(tempErrors);
@@ -47,8 +60,8 @@ const LoginForm = () => {
                             id="email"
                             type="text"
                             name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={user.email}
+                            onChange={handleChange}
                             placeholder="Enter your email"
                             required
                         />
@@ -60,9 +73,9 @@ const LoginForm = () => {
                             id="password"
                             type="password"
                             name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Enter your email"
+                            value={user.password}
+                            onChange={handleChange}
+                            placeholder="Enter your password"
                             required
                         />
                         {errors.password && (<span style={{ color: "red" }}>

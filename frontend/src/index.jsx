@@ -7,15 +7,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import App from "./App";
-import { CartProvider } from "./context/cartContext";
+import { CartProvider } from "./context/shopping-cart-context";
 
 
 const root = createRoot(document.getElementById("root"));
 
 root.render(
     <StrictMode>
-        <CartProvider>
-            <App />
-        </CartProvider>
+        <App />
     </StrictMode>
 );
