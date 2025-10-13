@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "id": "p101",
+      "name": "Laptop Sleeve",
+      "price": 999,
+      "quantity": 1,
+      "image": "https://example.com/laptop-sleeve.jpg"
+    },
+    {
+      "id": "p102",
+      "name": "USB-C Hub",
+      "price": 1499,
+      "quantity": 2,
+      "image": "https://example.com/usb-hub.jpg"
+    }
+  ],
+  "subtotal": 3997,
+  "shipping": 99,
+  "total": 4096
+}

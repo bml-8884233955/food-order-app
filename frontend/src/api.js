@@ -10,7 +10,7 @@ export const useApi = () => {
 
     const getCart = async () => await get(API_URLS.GET_CART);
 
-    const addToCart = async () => await post(API_URLS.ADD_CART);
+    const addToCart = async (obj) => await post(API_URLS.ADD_CART, obj);
 
     const updateCart = async (userId, updatedCart) =>
         await put(API_URLS.UPDATE_CART(userId), updatedCart);

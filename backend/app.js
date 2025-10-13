@@ -34,13 +34,46 @@ app.get('/api/resturant-menu', async (req, res) => {
   res.status(200).json({ menu: menuData });
 });
 
-app.post('/api/cart', async (req, res) => {
-  const cartData = req.body;
+app.get('/api/cart', async (req, res) => {
+  try {
+    const newCartItem = req.body.data;
+    console.log("cart body" + newCartItem);
 
-  const fileContent = await fs.readFile('./data/cart.json');
-  fileContent.push(cartData)
-  await fs.writeFile('./data/cart.json', JSON.stringify(cartData));
-  res.status(200).json({ message: "Cart added successfully", data: cartData });
+    const fileContent = await fs.readFile('./data/cart.json');
+    const data = JSON.parse(fileContent);
+    console.log("Cart Return data" + data);
+    res.status(200).json({ cartItems: data });
+  } catch (err) {
+    console.error("Error fetching data:", err);
+    res.status(500).json({ error: err.message });
+  }
+
+});
+
+app.post('/api/cart', async (req, res) => {
+  try {
+    const newCartItem = req.body; // expect the new cart item in request body
+    if (!newCartItem || !newCartItem.id) {
+      return res.status(400).json({ error: "Invalid cart item data" });
+    }
+
+    // Read existing cart data
+    const cartFile = './data/cart-item.json';
+    const fileData = await fs.readFile(cartFile, "utf-8");
+    const cartData = JSON.parse(fileData || '{"cartItems": []}');
+
+    // Add new item
+    cartData.cartItems.push(newCartItem);
+
+    // Write updated cart back to file
+    await fs.writeFile(cartFile, JSON.stringify(cartData, null, 2));
+
+    res.status(200).json({ data: cartData, message: "Cart Added Successfully!" });
+  } catch (err) {
+    console.error("Error adding to cart:", err);
+    res.status(500).json({ error: "Failed to add item to cart" });
+  }
+
 });
 
 app.put('/api/cart/:userId', async (req, res) => {
@@ -58,18 +91,6 @@ app.put('/api/cart/:userId', async (req, res) => {
   const cartItem = JSON.parse(fileContent);
   await fs.writeFile('./data/cart.json', JSON.stringify(cartData));
   res.status(200).json({ message: "Cart updated successfully", data: cartItem });
-});
-
-app.get('/api/cart', async (req, res) => {
-  const newCartItem = req.body.data;
-
-  const data = await fs.readFile('./data/cart.json', 'utf8');
-  const cartData = JSON.parse(data);
-  cartData.cartItems.push(newCartItem);
-
-  await fs.writeFile('./data/cart-item.json', JSON.stringify(cartData));
-
-  res.status(200).json({ data: cartData, message: 'Cart Added Successfully!' });
 });
 
 app.post('/api/orders', async (req, res) => {

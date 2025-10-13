@@ -1,16 +1,13 @@
-// import { fetchCartItem } from "../http";
-import { useState, useEffect, useContext } from "react";
-// import { useFetch } from "../hooks/useFetch";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../context/shopping-cart-context";
 
 const Cart = () => {
     const cartCtx = useContext(CartContext);
     console.log('cart items' + cartCtx.items);
-
-    const totalPrice = cartCtx.items.reduce(
-        (acc, item) => acc + item.price * item.quantity,
-        0
-    );
+    // useEffect(() => {
+    //     cartCtx.getCartItem();
+    // }, []);
+    const totalPrice = cartCtx.items.length ? cartCtx.items.reduce((acc, item) => acc + item.price * item.quantity, 0) : 0;
 
     const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 

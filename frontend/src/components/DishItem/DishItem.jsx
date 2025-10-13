@@ -1,12 +1,13 @@
 import styles from './dishItem.module.scss';
+import { useContext } from 'react';
 import { currencyFormatter } from '../../util/formatting';
 import Button from '../Button';
-// import { CartContext } from "../context/shopping-cart-context";
+import { CartContext } from '../../context/shopping-cart-context';
 
 const DishItemList = ({ dishObj }) => {
-    // const { handleAddItemToCart } = CartContext();
+    const { addItemToCart } = useContext(CartContext);
     const { id, name, category, price } = dishObj;
-    // const itemObj = { id, name, category, price };
+    const itemObj = { id, name, category, price };
     return (
         <>
             <div className={styles.dishItem}>
@@ -17,7 +18,7 @@ const DishItemList = ({ dishObj }) => {
                     <p>{currencyFormatter.format(dishObj.price)}</p>
                 </div>
                 <div className={styles.btnContainer}>
-                    {/* <Button label="add" onClick={() => handleAddItemToCart(itemObj)} /> */}
+                    <Button label="add" onClick={() => addItemToCart(itemObj)} />
                 </div>
             </div>
         </>
